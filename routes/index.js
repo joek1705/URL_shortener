@@ -13,7 +13,7 @@ router.get("/", function (req, res, next) {
 router.post("/api/shorturl/new", async function (req, res) {
   let longURL = req.body.longURL;
   if (!valid_url.isUri(longURL)) {
-    res.json({ message: "Invalid URL" });
+    return res.json({ message: "Invalid URL" });
   }
   let shortcode = shortid.generate();
   let shortURL = req.get("host") + "/api/shorturl/" + shortcode;
