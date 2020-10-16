@@ -1,2 +1,2 @@
-# URL_shortener
-URL Shortener microservice
+# About
+URL Shortener microservice implemented for fun.
