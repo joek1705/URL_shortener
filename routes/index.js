@@ -33,7 +33,14 @@ router.post("/api/shorturl/new", async function (req, res) {
   //add url to database
 });
 
-router.get("/api/shorturl/:id", function (req, res) {
-  res.send(req.params.id);
+router.get("/api/shorturl/:shortcode", async function (req, res) {
+  let shortcode = req.params.shortcode.toString();
+  console.log(shortcode);
+  let exists = await URL_data.findOne({ shorthand: shortcode });
+  if (!exists) {
+    res.json({ message: "Shortcode does not exist" });
+  } else {
+    res.redirect(exists.long_URL);
+  }
 });
 module.exports = router;
