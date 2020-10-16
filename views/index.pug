@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Url Shortener Microservice
+  h2 Short URL Creation
+  form(method='post', action='/api/shorturl/new')
+    label(for="URL") URL to be shortened
+    input(type="text" id="URL" name="longURL")
+    input(type='Submit' Value='Shorten URL')

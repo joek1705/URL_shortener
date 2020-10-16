@@ -3,12 +3,11 @@ var router = express.Router();
 
 var shortid = require("shortid");
 var valid_url = require("valid-url");
-const { deleteOne } = require("../models/URL_data");
 var URL_data = require("../models/URL_data");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
+  res.render("index", { title: "URL Shortener" });
 });
 
 router.post("/api/shorturl/new", async function (req, res) {
@@ -17,10 +16,10 @@ router.post("/api/shorturl/new", async function (req, res) {
     res.json({ message: "Invalid URL" });
   }
   let shortcode = shortid.generate();
-  let shortURL = "/api/shorturl/" + shortcode;
+  let shortURL = req.get("host") + "/api/shorturl/" + shortcode;
   let exists = await URL_data.findOne({ long_URL: longURL });
   if (exists) {
-    res.status(200).send();
+    res.status(200).send("URL Already exists");
   } else {
     let newURL = URL_data({
       long_URL: longURL,

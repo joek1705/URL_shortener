@@ -2,7 +2,12 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+h1,form {
+  margin-left: 35%;
+}
+h2 {
+  margin-left: 40%;
+}
 a {
   color: #00B7FF;
 }
